@@ -1,0 +1,49 @@
+name: Python CI/CD with Docker
+
+# Define trigger
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Define the environment where steps will run
+
+    steps:
+    # Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Set up Python (in this case, 3.11)
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Build Docker image
+    - name: Build Docker image
+      run: |
+        docker build -t my-app .
+
+    # Run Docker container and test
+    - name: Run Docker container
+      run: |
+        docker run -d -p 8000:8000 my-app
+        sleep 10  # Wait a moment for the container to start
+        curl http://localhost:8000  # You can add tests for your app
+
+    # Clean up Docker containers after the run
+    - name: Clean up Docker containers
+      run: |
+        docker ps -q | xargs docker stop
+        docker ps -a -q | xargs docker rm
