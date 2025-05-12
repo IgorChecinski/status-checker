@@ -7,6 +7,8 @@ from fastapi import Request
 from fastapi.staticfiles import StaticFiles
 from app.database import database, urls 
 from redis.asyncio import Redis
+from prometheus_fastapi_instrumentator import Instrumentator
+
 
 REDIS_HOST = "redis"
 REDIS_PORT = 6379
@@ -23,9 +25,9 @@ async def lifespan(app: FastAPI):
     await redis.close()
 
 app = FastAPI(lifespan=lifespan)
+Instrumentator().instrument(app).expose(app)
 templates = Jinja2Templates(directory="app/templates")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
-
 
 
 async def get_cached_status(url: str):
