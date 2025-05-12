@@ -39,7 +39,8 @@ jobs:
     - name: Run Docker container
       run: |
         docker run -d -p 8000:8000 url-monitor
-        sleep 10  # Wait a moment for the container to start
+        container_id=$(docker ps -q)
+        docker wait $container_id  # Wait for the container to finish starting
         curl http://localhost:8000  # You can add tests for your app
 
     # Clean up Docker containers after the run
