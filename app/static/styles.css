@@ -1,75 +1,117 @@
-/* Resetting margin and padding for all elements */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Basic styling for the body */
+/* Base styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fceabb, #f8b500);
+    color: #444;
     line-height: 1.6;
-    padding: 20px;
+    padding: 40px 20px;
+    min-height: 100vh;
 }
 
-/* Styling for the main header */
+/* Header */
 h1 {
     text-align: center;
-    color: #0073e6;
+    color: #fff;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Styling for the form */
+/* Form styling */
 form {
     max-width: 500px;
     margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffffdd;
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
 }
 
-/* Styling for the form label */
+form:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Labels */
 label {
     display: block;
     margin-bottom: 10px;
-    font-weight: bold;
+    font-weight: 600;
+    color: #333;
 }
 
-/* Styling for the input field */
+/* Input field */
 input[type="text"] {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
+    padding: 12px 15px;
+    margin-bottom: 25px;
+    border: none;
+    border-radius: 12px;
+    background-color: #f3f3f3;
     font-size: 16px;
+    box-shadow: inset 2px 2px 5px #ddd, inset -2px -2px 5px #fff;
+    transition: all 0.2s ease-in-out;
 }
 
-/* Styling for the submit button */
+input[type="text"]:focus {
+    outline: none;
+    background-color: #fffbe6;
+    box-shadow: 0 0 0 2px #ffcf66;
+}
+
+/* Button */
 button[type="submit"] {
     width: 100%;
-    padding: 10px;
-    background-color: #0073e6;
-    color: white;
+    padding: 12px;
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    color: #fff;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 12px;
+    font-size: 18px;
     cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 button[type="submit"]:hover {
-    background-color: #005bb5;
+    background: linear-gradient(135deg, #fda085, #f6d365);
 }
 
-/* Styling for the status section */
-h2 {
-    margin-top: 30px;
+/* Result section */
+#status-container {
+    margin-top: 40px;
     text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 p {
-    text-align: center;
-    font-size: 18px;
+    font-size: 1.2rem;
+    color: #222;
+    background-color: #ffffffcc;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Simple fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
