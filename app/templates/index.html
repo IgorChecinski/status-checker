@@ -13,13 +13,16 @@
     <!-- Form to input the URL -->
     <form action="/monitor" method="get">
         <label for="url">Enter URL:</label>
-        <input type="text" id="url" name="url" placeholder="https://example.com" required>
+        <input type="text" id="url" name="url" placeholder="https://example.com" value="{{ url }}" required>
         <button type="submit">Check Status</button>
     </form>
 
-    {% if url %}
-    <h2>Status for URL: {{ url }}</h2>
-    <p>Status: {{ status }}</p>
-    {% endif %}
+    <!-- Container for status message -->
+    <div id="status-container">
+        {% if url %}
+        <h2>Status for URL: {{ url }}</h2>
+        <p>Status: {{ status }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>

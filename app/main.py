@@ -17,8 +17,8 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/monitor")
-async def monitor_url(url: str):
+@app.get("/monitor", response_class=HTMLResponse)
+async def monitor_url(request: Request, url: str):
     try:
         # Send a GET request to the URL
         async with httpx.AsyncClient() as client:
@@ -26,8 +26,10 @@ async def monitor_url(url: str):
         
         # Determine the status of the URL
         if response.status_code == 200:
-            return {"url": url, "status": "OK"}
+            status = "OK"
         else:
-            return {"url": url, "status": f"Error: {response.status_code}"}
+            status = f"Error: {response.status_code}"
     except httpx.RequestError as e:
-        return {"url": url, "status": f"Error: {str(e)}"}
+        status = f"Error: {str(e)}"
+    
+    return templates.TemplateResponse("index.html", {"request": request, "url": url, "status": status})
