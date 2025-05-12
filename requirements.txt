@@ -6,3 +6,4 @@ sqlalchemy
 asyncpg
 databases[postgresql]
 psycopg2-binary
+redis[async]
