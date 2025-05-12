@@ -1,13 +1,21 @@
+from contextlib import asynccontextmanager
 import httpx
 from fastapi import FastAPI
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi import Request
 from fastapi.staticfiles import StaticFiles
+from app.database import database, urls 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    await database.connect()
+    yield
+    # Shutdown
+    await database.disconnect()
 
-
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 templates = Jinja2Templates(directory="app/templates")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
