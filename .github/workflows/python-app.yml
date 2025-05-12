@@ -47,5 +47,11 @@ jobs:
     # Clean up Docker containers after the run
     - name: Clean up Docker containers
       run: |
-        docker ps -q | xargs docker stop
-        docker ps -a -q | xargs docker rm
+        CONTAINERS=$(docker ps -q)
+        if [ -n "$CONTAINERS" ]; then
+          echo "Stopping containers..."
+          docker stop $CONTAINERS
+          docker rm $CONTAINERS
+        else
+          echo "No containers to stop."
+        fi
