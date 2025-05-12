@@ -39,5 +39,8 @@ async def monitor_url(request: Request, url: str):
             status = f"Error: {response.status_code}"
     except httpx.RequestError as e:
         status = f"Error: {str(e)}"
+
+    query = urls.insert().values(url=url, status=status)
+    await database.execute(query)
     
     return templates.TemplateResponse("index.html", {"request": request, "url": url, "status": status})

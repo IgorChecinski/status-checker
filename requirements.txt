@@ -4,4 +4,5 @@ httpx
 jinja2
 sqlalchemy
 asyncpg
-databases
+databases[postgresql]
+psycopg2-binary
