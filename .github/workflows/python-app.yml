@@ -38,14 +38,9 @@ jobs:
     # Run Docker container and test
     - name: Run Docker container
       run: |
-        docker run -d -p 8000:8000 --name url-monitor-container url-monitor
-        sleep 60  # Wait a moment for the container to start
-        curl http://localhost:8000  # Test if the application is accessible
-
-    # Show Docker container logs
-    - name: Show Docker container logs
-      run: |
-        docker logs url-monitor-container  # Show logs from the running container
+        docker run -d -p 8000:8000 url-monitor
+        sleep 10  # Wait a moment for the container to start
+        curl http://localhost:8000  # You can add tests for your app
 
     # Clean up Docker containers after the run
     - name: Clean up Docker containers
