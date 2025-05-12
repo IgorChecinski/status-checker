@@ -39,8 +39,10 @@ jobs:
     - name: Run Docker container
       run: |
         docker run -d -p 8000:8000 url-monitor
-        sleep 10  # Wait a moment for the container to start
-        curl http://localhost:8000  # You can add tests for your app
+        for i in {1..15}; do
+          echo "Waiting for the app to be ready... ($i)"
+          curl --fail http://localhost:8000 && break || sleep 2
+        done
 
     # Clean up Docker containers after the run
     - name: Clean up Docker containers
