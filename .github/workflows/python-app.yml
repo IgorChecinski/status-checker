@@ -4,14 +4,14 @@ name: Python CI/CD with Docker
 on:
   push:
     branches:
-      - main
+      - '*'
   pull_request:
     branches:
-      - main
+      - '*'
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Define the environment where steps will run
+    runs-on: ubuntu-latest  
 
     steps:
     # Checkout code
