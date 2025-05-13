@@ -8,3 +8,4 @@ databases[postgresql]
 psycopg2-binary
 redis[async]
 prometheus_fastapi_instrumentator
+pytest
