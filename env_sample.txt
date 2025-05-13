@@ -1,0 +1,6 @@
+DATABASE_URL="postgresql://postgres:password@db:5432/mydb"
+REDIS_HOST="redis"
+REDIS_PORT="6379"
+POSTGRES_USER="postgres"
+POSTGRES_PASSWORD="password"
+POSTGRES_DB="mydb"
