@@ -41,7 +41,8 @@ The URLs and their statuses will be stored in the PostgreSQL database.
 
 ## Project Structure
 
-<img width="623" alt="Screenshot 2025-05-12 at 14 35 08" src="https://github.com/user-attachments/assets/3328e794-0af6-447a-beaf-c196243fffd3" />
+![Screenshot 2025-05-13 at 14 50 08](https://github.com/user-attachments/assets/43c82035-b7b6-47e6-9ae7-d7d1d5d542ed)
+
 
 ## Docker Configuration
 
