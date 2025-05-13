@@ -30,13 +30,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
+    # Lint code with flake8
+    - name: Lint with flake8
+      run: |
+        flake8 app --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 app --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+
     # Set env vars for test
     - name: Set env vars for test
       run: |
         echo "DATABASE_URL=sqlite:///./test.db" >> $GITHUB_ENV
         echo "REDIS_HOST=localhost" >> $GITHUB_ENV
         echo "REDIS_PORT=6379" >> $GITHUB_ENV
-
 
     #Run tests
     - name: Run tests with pytest
