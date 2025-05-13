@@ -24,17 +24,36 @@ Make sure you have the following installed:
 git clone https://github.com/yourusername/url-monitor.git
 cd url-monitor
 ```
-### 2. Build and run the application using Docker Compose:
+
+### 2. Set up environment variables:
+Before running the application, you need to configure the environment variables.
+
+#### Step 1: Copy the sample environment file to create your own .env file.
+```bash
+cp env_sample.txt .env
+```
+#### Step 2: Open the .env file and configure the necessary values for your environment. For example:
+```bash
+DATABASE_URL=postgresql://user:password@localhost/dbname
+REDIS_HOST=localhost
+REDIS_PORT=6379
+```
+DATABASE_URL: The URL connection for your PostgreSQL database.
+REDIS_HOST: The host where Redis is running (defaults to localhost).
+REDIS_PORT: The port on which Redis is available (defaults to 6379).
+Make sure to modify these values according to your local environment or production settings.
+
+### 3. Build and run the application using Docker Compose:
 ```bash
 docker-compose up --build
 ```
 
 This command will build the Docker images and start the application along with a PostgreSQL database. The FastAPI app will be accessible on http://localhost:8000.
 
-### 3. Access the application:
+### 4. Access the application:
 Once the containers are running, you can visit the application in your browser at http://localhost:8000.
 
-### 4. Monitor URL Status:
+### 5. Monitor URL Status:
 Enter any URL into the input box and click "Check Status."
 The application will show the status of the URL (either "OK" or an error message with the corresponding status code).
 The URLs and their statuses will be stored in the PostgreSQL database.
