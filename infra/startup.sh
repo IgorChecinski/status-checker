@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 
 if ! command -v docker &> /dev/null
 then
@@ -19,7 +21,11 @@ then
 fi
 
 
-cd /app
-docker-compose up -d
+cd /home
+git clone https://github.com/IgorChecinski/status-checker.git || echo "Repo already cloned"
+cd status-checker
 
-echo "Startup script completed!"
+
+sudo docker-compose up -d
+
+echo "Startup script completed successfully!"
