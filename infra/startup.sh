@@ -34,6 +34,9 @@ POSTGRES_PASSWORD=password
 POSTGRES_DB=mydatabase
 EOF
 
+echo "Cleaning up any old containers..."
+sudo docker-compose down || true
+
 sudo docker-compose up -d
 
 echo "Startup script completed successfully!"
