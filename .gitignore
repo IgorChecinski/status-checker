@@ -176,3 +176,9 @@ cython_debug/
 
 
 .DS_Store
+*.json
+*.tfstate
+*.tfstate.backup
+*.lock.hcl
+*.0_x5
+LICENSE.txt
