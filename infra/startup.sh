@@ -22,7 +22,7 @@ fi
 
 
 cd /home
-git clone https://github.com/IgorChecinski/status-checker.git || echo "Repo already cloned"
+sudo git clone https://github.com/IgorChecinski/status-checker.git
 cd status-checker
 
 
