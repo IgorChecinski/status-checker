@@ -25,6 +25,14 @@ cd /home
 sudo git clone https://github.com/IgorChecinski/status-checker.git
 cd status-checker
 
+cat <<EOF > .env
+DATABASE_URL=postgresql://postgres:password@db:5432/mydatabase
+REDIS_HOST=redis
+REDIS_PORT=6379
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+POSTGRES_DB=mydatabase
+EOF
 
 sudo docker-compose up -d
 
