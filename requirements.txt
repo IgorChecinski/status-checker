@@ -11,3 +11,4 @@ prometheus_fastapi_instrumentator
 pytest
 aiosqlite
 flake8
+pytest-asyncio
