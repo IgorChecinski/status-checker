@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export $(grep -v '^#' ../.env | xargs)
 
 CONTAINER_NAME="status-checker_db_1"
 PG_USER="${POSTGRES_USER}"
