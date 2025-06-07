@@ -81,6 +81,9 @@ jobs:
       run: |
         echo "[vm]" > provisioning/inventory_ci.ini
         echo "34.145.16.230 ansible_user=ubuntu" >> provisioning/inventory_ci.ini
+        
+    - name: Mark repo directory as safe for git
+     shell: git config --global --add safe.directory /home/ubuntu/status-checker
 
 
     - name: Deploy to VM with Ansible
