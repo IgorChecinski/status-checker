@@ -85,11 +85,14 @@ jobs:
     - name: Mark repo directory as safe for git
       run: git config --global --add safe.directory /home/ubuntu/status-checker
 
-    - name: Deploy to VM with Ansible
-      uses: dawidd6/action-ansible-playbook@v2
-      with:
-        playbook: provisioning/deploy.yml
-        inventory: provisioning/inventory_ci.ini
+    - name: Install Ansible for deploy step
+      run: |
+        python -m pip install --upgrade pip
+        pip install ansible
+
+    - name: Deploy to VM with Ansible (manual ansible-playbook run)
+      run: |
+        ansible-playbook provisioning/deploy.yml -i provisioning/inventory_ci.ini
       env:
         ANSIBLE_HOST_KEY_CHECKING: 'False'
         ANSIBLE_PRIVATE_KEY_FILE: private_key.pem
