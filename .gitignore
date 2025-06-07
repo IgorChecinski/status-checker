@@ -182,3 +182,4 @@ cython_debug/
 *.lock.hcl
 *.0_x5
 LICENSE.txt
+*.ini

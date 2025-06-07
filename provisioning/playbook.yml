@@ -1,0 +1,5 @@
+- hosts: vm
+  become: true
+  roles:
+    - docker
+    - status_checker

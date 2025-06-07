@@ -1,0 +1,26 @@
+- name: Ensure apt is updated
+  apt:
+    update_cache: yes
+
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+
+- name: Start and enable Docker service
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Check if Docker Compose is installed
+  stat:
+    path: /usr/local/bin/docker-compose
+  register: docker_compose_path
+
+- name: Install Docker Compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+    dest: /usr/local/bin/docker-compose
+    mode: '0755'
+  when: not docker_compose_path.stat.exists

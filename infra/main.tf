@@ -25,8 +25,9 @@ resource "google_compute_instance" "monitor" {
     email  = google_service_account.vm_sa.email
     scopes = ["https://www.googleapis.com/auth/devstorage.read_write"]
   }
-
-  metadata_startup_script = file("startup.sh")
+  metadata = {
+    ssh-keys = "ubuntu:${file(var.ssh_public_key_path)}"
+  }
 }
 
 resource "google_storage_bucket" "backup_bucket" {
