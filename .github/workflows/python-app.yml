@@ -72,11 +72,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Save SSH private key
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
+        chmod 600 private_key.pem
+
+    - name: Create inventory for CI
+      run: |
+        echo "[vm]" > provisioning/inventory_ci.ini
+        echo "34.145.16.230 ansible_user=ubuntu" >> provisioning/inventory_ci.ini
+
+
     - name: Deploy to VM with Ansible
       uses: dawidd6/action-ansible-playbook@v2
       with:
         playbook: provisioning/deploy.yml
-        inventory: provisioning/inventory.ini
+        inventory: provisioning/inventory_ci.ini
       env:
         ANSIBLE_HOST_KEY_CHECKING: 'False'
-        ANSIBLE_PRIVATE_KEY_FILE: ${{ secrets.SSH_PRIVATE_KEY }}
+        ANSIBLE_PRIVATE_KEY_FILE: private_key.pem
