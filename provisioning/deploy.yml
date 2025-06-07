@@ -1,0 +1,15 @@
+---
+- hosts: vm
+  become: yes
+  tasks:
+    - name: Pull latest changes from repo
+      git:
+        repo: https://github.com/IgorChecinski/status-checker.git
+        dest: /home/ubuntu/status-checker
+        version: main
+        update: yes
+
+    - name: Restart containers
+      shell: docker-compose down && docker-compose up -d
+      args:
+        chdir: /home/ubuntu/status-checker

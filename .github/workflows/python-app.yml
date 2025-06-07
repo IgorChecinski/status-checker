@@ -73,3 +73,12 @@ jobs:
         else
           echo "No containers to stop."
         fi
+
+    - name: Deploy to VM with Ansible
+      uses: dawidd6/action-ansible@v2
+      with:
+        playbook: provisioning/deploy.yml
+        inventory: provisioning/inventory.ini
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: 'False'
+        ANSIBLE_PRIVATE_KEY_FILE: ${{ secrets.SSH_PRIVATE_KEY }}
