@@ -1,4 +1,4 @@
-# URL Monitor App
+# URL Monitor App (README needs update)
 
 This is a simple web application built with FastAPI to monitor the status of URLs provided by users. The app checks the status of the URLs and stores them in a PostgreSQL database for tracking purposes. It uses Docker for containerization, making it easy to deploy and manage.
 
