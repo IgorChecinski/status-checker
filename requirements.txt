@@ -12,3 +12,4 @@ pytest
 aiosqlite
 flake8
 pytest-asyncio
+ansible==7.5.0
